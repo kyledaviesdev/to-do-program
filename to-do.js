@@ -37,8 +37,12 @@ function displayToDoItems(sortMethod) {
     const checkbox = document.createElement('input');
     checkbox.classList.add('checkbox-input');
     checkbox.type = 'checkbox';
-    checkbox.checked = item.isCompleted; 
-    toDoItemElement.appendChild(checkbox);
+    checkbox.checked = item.isCompleted; // Set the checkbox state based on the item's isCompleted property
+    checkbox.addEventListener('change', () => {
+      item.isCompleted = checkbox.checked; // Update the item's isCompleted property directly
+      displayToDoItems(sortMethod); 
+    });
+    toDoItemElement.appendChild(checkbox)
 
     const taskNameSpan = document.createElement('span');
     taskNameSpan.classList.add('task-name');
